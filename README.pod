@@ -1,0 +1,198 @@
+=pod
+
+=head1 NAME
+
+WebService::SendGrid::Newsletter - Perl interface to SendGrid Newsletter API
+
+=head1 VERSION
+
+version 0.01
+
+=head1 SYNOPSIS
+
+    my $sgn = WebService::SendGrid::Newsletter->new(api_user => 'user',
+                                                    api_key => 'SeCrEtKeY'
+                                                    identity => 'johndoe');
+
+    # Create a new recipients list
+    $sgn->lists->add(list => 'subscribers', name => 'name');
+
+    # Add a recipient to the list
+    $sgn->lists->email->add(list => 'subscribers',
+                            data => { name => 'Tom', email => 'tom@foo.com' });
+
+    # Create a new newsletter
+    $sgn->add(identity => 'johndoe',
+              name => 'first newsletter',
+              subject => 'Your weekly newsletter',
+              text => 'Hello, this is your weekly newsletter',
+              html => '<h1>Hello</h1><p>This is your weekly newsletter</p>');
+
+    # Assign recipients list to the newsletter
+    $sgn->recipients->add(name => 'first newsletter', list => 'subscribers');
+
+    # Schedule the newsletter to be sent in 30 minutes
+    $sgn->schedule->add(name => 'first newsletter', after => 30);
+
+=head1 METHODS
+
+=head2 new
+
+Creates a new instance of WebService::SendGrid::Newsletter.
+
+    my $sgn = WebService::SendGrid::Newsletter->new(api_user => 'user',
+                                                    api_key => 'SeCrEtKeY');
+
+Parameters:
+
+=over 4
+
+=item * api_user
+
+=item * api_key
+
+=back
+
+=head2 get
+
+Retrieves an existing newsletter.
+
+Parameters:
+
+=over 4
+
+=item * name
+
+B<(Required)> The name of the newsletter to retrieve.
+
+=back
+
+=head2 add
+
+Creates a new newsletter.
+
+Parameters:
+
+=over 4
+
+=item * identity
+
+B<(Required)> The identity that will be assigned to this newsletter. Can be
+ommitted if it was given as an argument when the
+WebService::SendGrid::Newsletter instance was created.
+
+=item * name
+
+B<(Required)> The name of the newsletter.
+
+=item * subject
+
+B<(Required)> The subject line of the newsletter.
+
+=item * text
+
+B<(Required)> The text contents of the newsletter.
+
+=item * html
+
+B<(Required)> The HTML contents of the newsletter.
+
+=back
+
+=head2 edit
+
+Modifies an existing newsletter.
+
+Parameters:
+
+=over 4
+
+=item * identity
+
+B<(Required)> The identity that will be assigned to this newsletter.
+
+=item * name
+
+B<(Required)> The existing name of the newsletter.
+
+=item * newname
+
+B<(Required)> The new name of the newsletter.
+
+=item * subject
+
+B<(Required)> The subject line of the newsletter.
+
+=item * text
+
+B<(Required)> The text contents of the newsletter.
+
+=item * html
+
+B<(Required)> The HTML contents of the newsletter.
+
+=back
+
+=head2 list
+
+Retrieves a list of all newsletters.
+
+Parameters:
+
+=over 4
+
+=item * name
+
+Newsletter name. If provided, the call checks if the specified newsletter
+exists.
+
+=back
+
+=head2 delete
+
+Deletes a newsletter.
+
+Parameters:
+
+=over 4
+
+=item * name
+
+B<(Required)> The name of the newsletter to delete.
+
+=back
+
+=head2 lists
+
+Returns an instance of L<WebService::SendGrid::Newsletter::Lists>, which is used
+to manage recipient lists.
+
+=head2 recipients
+
+Returns an instance of L<WebService::SendGrid::Newsletter::Recipients>, which
+allows to assign recipient lists to newsletters.
+
+=head2 schedule
+
+Returns an instance of L<WebService::SendGrid::Newsletter::Schedule>, which is
+used to schedule a delivery time for a newsletter.
+
+=head2 last_response_code
+
+Returns the code of the last response from the API.
+
+=head2 last_response
+
+Returns the data structure retrieved with the last response from the API.
+
+=head1 AUTHOR
+
+Michal Wojciechowski <odyniec@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2012 by Michal Wojciechowski.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
