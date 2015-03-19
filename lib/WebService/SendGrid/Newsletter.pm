@@ -8,7 +8,7 @@ package WebService::SendGrid::Newsletter;
 use Carp;
 use HTTP::Request::Common;
 use JSON;
-use LWP::UserAgent;
+use HTTP::Tiny;
 
 use WebService::SendGrid::Newsletter::Lists;
 use WebService::SendGrid::Newsletter::Recipients;
@@ -70,7 +70,7 @@ sub new {
     $self->{api_user} = $args{api_user};
     $self->{api_key} = $args{api_key};
     
-    $self->{ua} = LWP::UserAgent->new;
+    $self->{ua} = HTTP::Tiny->new;
     $self->{ua}->agent(__PACKAGE__ . "/$VERSION (Perl)");
 
     $self->{last_response} = undef;
@@ -86,20 +86,17 @@ sub new {
 # Sends a request to SendGrid Newsletter API
 sub _send_request {
     my ($self, $path, %args) = @_;
-    
-    my $json = encode_json \%args;
-    
-    my $url = 'https://sendgrid.com/api/newsletter/' . $path . '.json';
-    
-    my $request = POST($url, { api_user => $self->{api_user}, 
-        api_key => $self->{api_key}, %args });
-    
-    my $response = $self->{ua}->request($request);
-    
-    $self->{last_response_code} = $response->code;
-    $self->{last_response} = decode_json $response->decoded_content;
 
-    return !$response->is_error;
+    my $params = { api_user => $self->{api_user}, api_key => $self->{api_key}, %args };
+
+    my $url = 'https://sendgrid.com/api/newsletter/' . $path . '.json';
+
+    my $response = $self->{ua}->post_form($url, $params);
+
+    $self->{last_response_code} = $response->{status};
+    $self->{last_response} = decode_json $response->{content};
+
+    return $response->{success};
 }
 
 # Checks if the required arguments are present
