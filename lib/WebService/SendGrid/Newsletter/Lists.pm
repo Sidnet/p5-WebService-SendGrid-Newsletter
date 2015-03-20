@@ -43,11 +43,11 @@ Parameters:
 
 =item * list
 
-B<(Required)> Create a recipient list with this name.
+B<(Required)> The name of the new recipient list.
 
 =item * name
 
-Specify column name for the name associated with email addresses.
+The name of the column for the name associated with email address.
 
 =back
 
@@ -62,7 +62,7 @@ sub add {
 
 =method get
 
-Retreive all recipient lists or check if specific list exists
+Retrieves all recipient lists or checks if a specific list exists.
 
 Parameters:
 
@@ -70,7 +70,7 @@ Parameters:
 
 =item * list
 
-Check whether this specific list exists on the account
+The name of the list to retrieve.
 
 =back
 
@@ -84,7 +84,7 @@ sub get {
 
 =method edit
 
-Rename a list.
+Renames a list.
 
 Parameters:
 
@@ -92,11 +92,11 @@ Parameters:
 
 =item * list
 
-B<(Required)> Existing list to be renamed.
+B<(Required)> The existing name of the list.
 
 =item * newlist
 
-B<(Required)> New name for the specific list.
+B<(Required)> The new name for the list.
 
 =back
 
@@ -110,7 +110,7 @@ sub edit {
 
 =method delete
 
-Delete a list.
+Deletes a list.
 
 Parameters:
 
@@ -118,7 +118,7 @@ Parameters:
 
 =item * list
 
-B<(Required)> Existing list to be removed.
+B<(Required)> The name of the list to be deleted.
 
 =back
 
@@ -132,7 +132,7 @@ sub delete {
 
 =method email
 
-Create instance of Lists::Email
+Returns an instance of WebService::SendGrid::Newsletter::Lists::Email.
 
 =cut
 
