@@ -31,17 +31,75 @@ sub new {
     return $self;
 }
 
+=method add
+
+Schedules a delivery time for an existing newsletter.
+
+Parameters:
+
+=over 4
+
+=item * name
+
+B<(Required)> Existing newsletter to schedule delivery for.
+
+=item * at
+
+Date/Time to schedule newsletter must be provided
+in format (YYYY-MM-DDTHH:MM:SS+-HH:MM).
+
+=item * after
+
+Positive number of minutes until devivery should occur.
+
+=back
+
+=cut
+
 sub add {
     my ($self, %args) = @_;
     
     $self->{sgn}->_send_request('schedule/add', %args);
 }
 
+=method get
+
+Retrieves the scheduled delivery time for an existing newsletter.
+
+Parameters:
+
+=over 4
+
+=item * name
+
+B<(Required)> Specific existing newsletter to be retrieved
+the delivery time schedule.
+
+=back
+
+=cut
+
 sub get {
     my ($self, %args) = @_;
     
     $self->{sgn}->_send_request('schedule/get', %args);
 }
+
+=method delete
+
+Removes a schedule send for a newsletter
+
+Parameters:
+
+=over 4
+
+=item * name
+
+B<(Required)> Existing newsletter to be removed schedule delivery time
+
+=back
+
+=cut
 
 sub delete {
     my ($self, %args) = @_;

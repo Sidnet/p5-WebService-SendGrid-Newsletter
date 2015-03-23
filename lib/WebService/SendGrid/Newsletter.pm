@@ -5,7 +5,6 @@ package WebService::SendGrid::Newsletter;
 # ABSTRACT: Perl interface to SendGrid Newsletter API
 # VERSION
 
-use Carp;
 use HTTP::Request::Common;
 use JSON;
 use HTTP::Tiny;
@@ -13,6 +12,7 @@ use HTTP::Tiny;
 use WebService::SendGrid::Newsletter::Lists;
 use WebService::SendGrid::Newsletter::Recipients;
 use WebService::SendGrid::Newsletter::Schedule;
+use parent 'WebService::SendGrid::Newsletter::Base';
 
 =head1 SYNOPSIS
 
@@ -97,17 +97,6 @@ sub _send_request {
     $self->{last_response} = decode_json $response->{content};
 
     return $response->{success};
-}
-
-# Checks if the required arguments are present
-sub _check_required_args {
-    my ($self, $required_args, %args) = @_;
-
-    foreach my $arg ( @{$required_args} ) {
-        if (!exists $args{$arg}) {
-            croak "Required parameter '$arg' is not defined";
-        }
-    }
 }
 
 =method get
