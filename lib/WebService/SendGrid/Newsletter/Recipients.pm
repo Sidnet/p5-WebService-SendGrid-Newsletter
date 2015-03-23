@@ -31,17 +31,73 @@ sub new {
     return $self;
 }
 
+=method add
+
+Assigns recipients list to the newsletter.
+
+Parameters:
+
+=over 4
+
+=item * name
+
+B<(Required)> The name of newsletter.
+
+=item * list
+
+B<(Required)> The name of existing list to assign to newsletter.
+
+=back
+
+=cut
+
 sub add {
     my ($self, %args) = @_;
     
     $self->{sgn}->_send_request('recipients/add', %args);
 }
 
+=method get
+
+Retrieves all recipient lists assigned to specified newsletter.
+
+Parameters:
+
+=over 4
+
+=item * name
+
+B<(Required)> The name of newsletter to retrieve lists.
+
+=back
+
+=cut
+
 sub get {
     my ($self, %args) = @_;
     
     $self->{sgn}->_send_request('recipients/get', %args);
 }
+
+=method delete
+
+Removes recipients list from the newsletter.
+
+Parameters:
+
+=over 4
+
+=item * name
+
+B<(Required)> The name of existing newsletter to be unassinged.
+
+=item * list
+
+B<(Required)> The name of specific list be removed from newsletter.
+
+=back
+
+=cut
 
 sub delete {
     my ($self, %args) = @_;

@@ -35,6 +35,27 @@ sub new {
     return $self;    
 }
 
+=method add
+
+Adds one or more emails to a recipient list.
+
+Parameters:
+
+=over 4
+
+=item * list
+
+B<(Required)> Existing list to be added email address to.
+
+=item * data
+
+B<(Required)> A reference to an array or a hash that specifies the name,
+email address, and additional fields to add to the specified recipient list.
+
+=back
+
+=cut
+
 sub add {
     my ($self, %args) = @_;
     
