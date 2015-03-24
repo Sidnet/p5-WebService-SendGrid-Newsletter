@@ -3,6 +3,7 @@ use warnings;
 package WebService::SendGrid::Newsletter::Lists;
 
 use WebService::SendGrid::Newsletter::Lists::Email;
+use parent 'WebService::SendGrid::Newsletter::Base';
 
 =method new
 
@@ -56,6 +57,7 @@ The name of the column for the name associated with email address.
 sub add {
     my ($self, %args) = @_;
 
+    $self->_check_required_args([ qw( list ) ], %args);
 
     return $self->{sgn}->_send_request('lists/add', %args);
 }
@@ -105,6 +107,8 @@ B<(Required)> The new name for the list.
 sub edit {
     my ($self, %args) = @_;
 
+    $self->_check_required_args([ qw( list newlist ) ], %args);
+
     return $self->{sgn}->_send_request('lists/edit', %args);
 }
 
@@ -126,6 +130,8 @@ B<(Required)> The name of the list to be deleted.
 
 sub delete {
     my ($self, %args) = @_;
+
+    $self->_check_required_args([ qw( list ) ], %args);
 
     return $self->{sgn}->_send_request('lists/delete', %args);
 }

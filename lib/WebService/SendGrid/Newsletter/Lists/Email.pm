@@ -3,6 +3,7 @@ use warnings;
 package WebService::SendGrid::Newsletter::Lists::Email;
 
 use JSON;
+use parent 'WebService::SendGrid::Newsletter::Base';
 
 =method new
 
@@ -59,6 +60,8 @@ email address, and additional fields to add to the specified recipient list.
 sub add {
     my ($self, %args) = @_;
     
+    $self->_check_required_args([ qw( list data ) ], %args);
+
     if (ref $args{data} eq 'HASH') {
         # Data is a hashref -- turn it into JSON
         $args{data} = encode_json $args{data};

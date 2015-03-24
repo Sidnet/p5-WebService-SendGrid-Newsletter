@@ -2,6 +2,8 @@ use strict;
 use warnings;
 package WebService::SendGrid::Newsletter::Schedule;
 
+use parent 'WebService::SendGrid::Newsletter::Base';
+
 =method new
 
 Creates a new instance of WebService::SendGrid::Newsletter::Schedule.
@@ -22,7 +24,7 @@ An instance of WebService::SendGrid::Newsletter.
 
 sub new {
     my ($class, %args) = @_;
-    
+
     my $self = {};
     bless($self, $class);
     
@@ -58,7 +60,9 @@ Positive number of minutes until devivery should occur.
 
 sub add {
     my ($self, %args) = @_;
-    
+
+    $self->_check_required_args([ qw( name ) ], %args);
+
     $self->{sgn}->_send_request('schedule/add', %args);
 }
 
@@ -81,7 +85,9 @@ the delivery time schedule.
 
 sub get {
     my ($self, %args) = @_;
-    
+
+    $self->_check_required_args([ qw( name ) ], %args);
+
     $self->{sgn}->_send_request('schedule/get', %args);
 }
 
@@ -104,6 +110,8 @@ B<(Required)> Existing newsletter to be removed schedule delivery time
 sub delete {
     my ($self, %args) = @_;
     
+    $self->_check_required_args([ qw( name ) ], %args);
+
     $self->{sgn}->_send_request('schedule/delete', %args);
 }
 
