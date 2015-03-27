@@ -2,6 +2,8 @@ use strict;
 use warnings;
 package WebService::SendGrid::Newsletter::Recipients;
 
+use parent 'WebService::SendGrid::Newsletter::Base';
+
 =method new
 
 Creates a new instance of WebService::SendGrid::Newsletter::Recipients.
@@ -53,7 +55,9 @@ B<(Required)> The name of existing list to assign to newsletter.
 
 sub add {
     my ($self, %args) = @_;
-    
+
+    $self->_check_required_args([ qw( name list ) ], %args);
+
     $self->{sgn}->_send_request('recipients/add', %args);
 }
 
@@ -75,6 +79,8 @@ B<(Required)> The name of newsletter to retrieve lists.
 
 sub get {
     my ($self, %args) = @_;
+
+    $self->_check_required_args([ qw( name ) ], %args);
     
     $self->{sgn}->_send_request('recipients/get', %args);
 }
@@ -101,6 +107,8 @@ B<(Required)> The name of specific list be removed from newsletter.
 
 sub delete {
     my ($self, %args) = @_;
+
+    $self->_check_required_args([ qw( name list ) ], %args);
     
     $self->{sgn}->_send_request('recipients/delete', %args);
 }
