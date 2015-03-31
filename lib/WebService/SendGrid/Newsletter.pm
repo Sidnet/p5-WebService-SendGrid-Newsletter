@@ -12,6 +12,7 @@ use HTTP::Tiny;
 use WebService::SendGrid::Newsletter::Lists;
 use WebService::SendGrid::Newsletter::Recipients;
 use WebService::SendGrid::Newsletter::Schedule;
+use WebService::SendGrid::Newsletter::Identity;
 use parent 'WebService::SendGrid::Newsletter::Base';
 
 =head1 SYNOPSIS
@@ -325,6 +326,24 @@ sub schedule {
     }
 
     return $self->{schedule};
+}
+
+=method identity
+
+Returns an instance of L<WebService::SendGrid::Newsletter::Identity>, which is
+used to manipulate address of sender.
+
+=cut
+
+sub identity {
+    my ($self) = @_;
+
+    if (!defined $self->{identity}) {
+        $self->{identity} =
+            WebService::SendGrid::Newsletter::Identity->new(sgn => $self);
+    }
+
+    return $self->{identity};
 }
 
 =method last_response_code
