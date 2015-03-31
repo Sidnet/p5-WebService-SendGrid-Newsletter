@@ -13,6 +13,7 @@ use WebService::SendGrid::Newsletter::Lists;
 use WebService::SendGrid::Newsletter::Recipients;
 use WebService::SendGrid::Newsletter::Schedule;
 use WebService::SendGrid::Newsletter::Identity;
+use WebService::SendGrid::Newsletter::Categories;
 use parent 'WebService::SendGrid::Newsletter::Base';
 
 =head1 SYNOPSIS
@@ -344,6 +345,24 @@ sub identity {
     }
 
     return $self->{identity};
+}
+
+=method categories
+
+Returns an instance of L<WebService::SendGrid::Newsletter::Categories>, which
+creates and manages categories within newsletters
+
+=cut
+
+sub categories {
+    my ($self) = @_;
+
+    if (!defined $self->{categories}) {
+        $self->{categories} =
+            WebService::SendGrid::Newsletter::Categories->new(sgn => $self);
+    }
+
+    return $self->{categories};
 }
 
 =method last_response_code
