@@ -73,7 +73,8 @@ sub new {
     $self->{api_key} = $args{api_key};
     
     $self->{ua} = HTTP::Tiny->new;
-    $self->{ua}->agent(__PACKAGE__ . "/$VERSION (Perl)");
+    $self->{ua}->agent(__PACKAGE__ . '/' .
+        ($__PACKAGE__::VERSION || 0) . ' (Perl)');
 
     $self->{last_response} = undef;
     $self->{last_response_code} = undef;

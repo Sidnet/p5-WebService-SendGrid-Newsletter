@@ -8,6 +8,54 @@ use warnings;
 use Test::More;
 use parent 'Test::Class';
 
+use HTTPTinyMock;
+
+sub startup : Test(startup => no_plan) {
+    my ($self) = @_;
+
+    HTTPTinyMock->clear_mocked_data;
+
+    if ($ENV{CAPTURE_DATA}) {
+        $self->SKIP_ALL('SENDGRID_API_USER and SENDGRID_API_KEY are ' .
+            'required to run live tests')
+            unless $ENV{SENDGRID_API_USER} && $ENV{SENDGRID_API_KEY};
+    }
+    else {
+        if ($self->can('mocked_data')) {
+            HTTPTinyMock->set_mocked_data($self->mocked_data);
+        }
+    }
+}
+
+sub shutdown : Test(shutdown) {
+    my ($self) = @_;
+
+    if ($ENV{CAPTURE_DATA}) {
+        my $captured_data = HTTPTinyMock->captured_data;
+
+        for my $request (@$captured_data) {
+            $request->{args}{content} =~
+                s/api_user=[^&]+/api_user=sendgrid_api_user/;
+            $request->{args}{content} =~
+                s/api_key=[^&]+/api_key=sendgrid_api_key/;
+        }
+
+    }
+    
+    print STDERR HTTPTinyMock->captured_data_dump;
+}
+
+sub sendgrid_api_user {
+    my ($self) = @_;
+
+    return $ENV{CAPTURE_DATA} ? $ENV{SENDGRID_API_USER} : 'sendgrid_api_user';
+}
+
+sub sendgrid_api_key {
+    my ($self) = @_;
+
+    return $ENV{CAPTURE_DATA} ? $ENV{SENDGRID_API_KEY} : 'sendgrid_api_key';
+}
 
 sub expect_success {
     my ($self, $sgn, $test_name) = @_;
