@@ -15,9 +15,9 @@ use WebService::SendGrid::Newsletter;
 use parent 'WebService::SendGrid::Newsletter::Test::Base';
 
 my $sgn;
-my $identity     = 'Testing Address';
-my $email        = 'someone@example.com';
-my $new_name     = 'The New Commpany Name';
+my $identity = 'Testing Address';
+my $email    = 'someone@example.com';
+my $new_name = 'The New Commpany Name';
 
 sub startup : Test(startup => no_plan) {
     my ($self) = @_;
