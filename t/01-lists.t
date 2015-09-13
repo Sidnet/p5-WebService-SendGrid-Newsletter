@@ -97,190 +97,221 @@ sub mocked_data {
           {
             'response' => {
                             'success' => 1,
-                            'headers' => {
-                                           'date' => 'Fri, 28 Aug 2015 01:19:28 GMT',
-                                           'set-cookie' => '__cfduid=dc30afc3252a0042aa42f0fde023bdc8b1440724768; expires=Sat, 27-Aug-16 01:19:28 GMT; path=/; domain=.sendgrid.com; HttpOnly',
-                                           'cf-ray' => '21cc3027cd492b21-WAW',
-                                           'transfer-encoding' => 'chunked',
-                                           'connection' => 'keep-alive',
-                                           'content-type' => 'text/html',
-                                           'server' => 'cloudflare-nginx'
-                                         },
-                            'protocol' => 'HTTP/1.1',
-                            'status' => '200',
-                            'reason' => 'OK',
                             'url' => 'https://sendgrid.com/api/newsletter/lists/add.json',
-                            'content' => '{"message": "success"}'
-                          },
-            'args' => {
-                        'headers' => {
-                                       'content-type' => 'application/x-www-form-urlencoded'
-                                     },
-                        'content' => 'api_key=sendgrid_api_key&api_user=sendgrid_api_user&list=Test+List&name=Test+List+Name'
-                      },
-            'url' => 'https://sendgrid.com/api/newsletter/lists/add.json',
-            'method' => 'POST'
-          },
-          {
-            'response' => {
-                            'content' => '{"error": "Test List already exists"}',
-                            'url' => 'https://sendgrid.com/api/newsletter/lists/add.json',
-                            'reason' => 'OK',
-                            'success' => 1,
                             'protocol' => 'HTTP/1.1',
+                            'content' => '{"message": "success"}',
+                            'reason' => 'OK',
                             'headers' => {
                                            'server' => 'cloudflare-nginx',
                                            'transfer-encoding' => 'chunked',
-                                           'cf-ray' => '21cc30295d4a2b21-WAW',
-                                           'connection' => 'keep-alive',
+                                           'cf-ray' => '21d2222191262af1-WAW',
                                            'content-type' => 'text/html',
-                                           'date' => 'Fri, 28 Aug 2015 01:19:28 GMT',
-                                           'set-cookie' => '__cfduid=dc30afc3252a0042aa42f0fde023bdc8b1440724768; expires=Sat, 27-Aug-16 01:19:28 GMT; path=/; domain=.sendgrid.com; HttpOnly'
+                                           'connection' => 'keep-alive',
+                                           'date' => 'Fri, 28 Aug 2015 18:38:28 GMT',
+                                           'set-cookie' => '__cfduid=d4c8b42a54244e86e868b6a52fa57bcf81440787108; expires=Sat, 27-Aug-16 18:38:28 GMT; path=/; domain=.sendgrid.com; HttpOnly'
                                          },
                             'status' => '200'
                           },
+            'method' => 'POST',
             'args' => {
-                        'content' => 'api_key=sendgrid_api_key&api_user=sendgrid_api_user&list=Test+List&name=Test+List+Name',
+                        'content' => {
+                                       'api_key' => 'sendgrid_api_key',
+                                       'list' => 'Test+List',
+                                       'name' => 'Test+List+Name',
+                                       'api_user' => 'sendgrid_api_user'
+                                     },
                         'headers' => {
                                        'content-type' => 'application/x-www-form-urlencoded'
                                      }
                       },
+            'url' => 'https://sendgrid.com/api/newsletter/lists/add.json'
+          },
+          {
             'url' => 'https://sendgrid.com/api/newsletter/lists/add.json',
-            'method' => 'POST'
+            'args' => {
+                        'content' => {
+                                       'api_key' => 'sendgrid_api_key',
+                                       'api_user' => 'sendgrid_api_user',
+                                       'name' => 'Test+List+Name',
+                                       'list' => 'Test+List'
+                                     },
+                        'headers' => {
+                                       'content-type' => 'application/x-www-form-urlencoded'
+                                     }
+                      },
+            'method' => 'POST',
+            'response' => {
+                            'protocol' => 'HTTP/1.1',
+                            'content' => '{"error": "Test List already exists"}',
+                            'success' => 1,
+                            'url' => 'https://sendgrid.com/api/newsletter/lists/add.json',
+                            'status' => '200',
+                            'reason' => 'OK',
+                            'headers' => {
+                                           'transfer-encoding' => 'chunked',
+                                           'cf-ray' => '21d2222321292af1-WAW',
+                                           'server' => 'cloudflare-nginx',
+                                           'date' => 'Fri, 28 Aug 2015 18:38:28 GMT',
+                                           'set-cookie' => '__cfduid=d4c8b42a54244e86e868b6a52fa57bcf81440787108; expires=Sat, 27-Aug-16 18:38:28 GMT; path=/; domain=.sendgrid.com; HttpOnly',
+                                           'content-type' => 'text/html',
+                                           'connection' => 'keep-alive'
+                                         }
+                          }
           },
           {
             'url' => 'https://sendgrid.com/api/newsletter/lists/edit.json',
-            'method' => 'POST',
             'args' => {
-                        'headers' => {
-                                       'content-type' => 'application/x-www-form-urlencoded'
+                        'content' => {
+                                       'newlist' => 'New+Test+List',
+                                       'api_user' => 'sendgrid_api_user',
+                                       'list' => 'Test+List',
+                                       'api_key' => 'sendgrid_api_key'
                                      },
-                        'content' => 'api_key=sendgrid_api_key&api_user=sendgrid_api_user&list=Test+List&newlist=New+Test+List'
-                      },
-            'response' => {
-                            'reason' => 'OK',
-                            'url' => 'https://sendgrid.com/api/newsletter/lists/edit.json',
-                            'content' => '{"message": "success"}',
-                            'success' => 1,
-                            'status' => '200',
-                            'protocol' => 'HTTP/1.1',
-                            'headers' => {
-                                           'server' => 'cloudflare-nginx',
-                                           'content-type' => 'text/html',
-                                           'connection' => 'keep-alive',
-                                           'cf-ray' => '21cc302abd4b2b21-WAW',
-                                           'transfer-encoding' => 'chunked',
-                                           'set-cookie' => '__cfduid=dc30afc3252a0042aa42f0fde023bdc8b1440724768; expires=Sat, 27-Aug-16 01:19:28 GMT; path=/; domain=.sendgrid.com; HttpOnly',
-                                           'date' => 'Fri, 28 Aug 2015 01:19:28 GMT'
-                                         }
-                          }
-          },
-          {
-            'response' => {
-                            'reason' => 'OK',
-                            'url' => 'https://sendgrid.com/api/newsletter/lists/get.json',
-                            'content' => '[{"list": "New Test List", "id": 43427677},{"list": "subscribers", "id": 38060302},{"list": "Test Category List", "id": 38116483}]',
-                            'success' => 1,
-                            'protocol' => 'HTTP/1.1',
-                            'status' => '200',
-                            'headers' => {
-                                           'set-cookie' => '__cfduid=dc30afc3252a0042aa42f0fde023bdc8b1440724768; expires=Sat, 27-Aug-16 01:19:28 GMT; path=/; domain=.sendgrid.com; HttpOnly',
-                                           'date' => 'Fri, 28 Aug 2015 01:19:28 GMT',
-                                           'content-type' => 'text/html',
-                                           'cf-ray' => '21cc302c2d4c2b21-WAW',
-                                           'connection' => 'keep-alive',
-                                           'transfer-encoding' => 'chunked',
-                                           'server' => 'cloudflare-nginx'
-                                         }
-                          },
-            'args' => {
-                        'headers' => {
-                                       'content-type' => 'application/x-www-form-urlencoded'
-                                     },
-                        'content' => 'api_key=sendgrid_api_key&api_user=sendgrid_api_user'
-                      },
-            'method' => 'POST',
-            'url' => 'https://sendgrid.com/api/newsletter/lists/get.json'
-          },
-          {
-            'response' => {
-                            'success' => 1,
-                            'protocol' => 'HTTP/1.1',
-                            'status' => '200',
-                            'headers' => {
-                                           'set-cookie' => '__cfduid=dc30afc3252a0042aa42f0fde023bdc8b1440724768; expires=Sat, 27-Aug-16 01:19:28 GMT; path=/; domain=.sendgrid.com; HttpOnly',
-                                           'date' => 'Fri, 28 Aug 2015 01:19:29 GMT',
-                                           'content-type' => 'text/html',
-                                           'transfer-encoding' => 'chunked',
-                                           'cf-ray' => '21cc302d8d4d2b21-WAW',
-                                           'connection' => 'keep-alive',
-                                           'server' => 'cloudflare-nginx'
-                                         },
-                            'url' => 'https://sendgrid.com/api/newsletter/lists/get.json',
-                            'content' => '[{"list": "New Test List", "id": 43427677}]',
-                            'reason' => 'OK'
-                          },
-            'args' => {
-                        'headers' => {
-                                       'content-type' => 'application/x-www-form-urlencoded'
-                                     },
-                        'content' => 'api_key=sendgrid_api_key&api_user=sendgrid_api_user&list=New+Test+List'
-                      },
-            'method' => 'POST',
-            'url' => 'https://sendgrid.com/api/newsletter/lists/get.json'
-          },
-          {
-            'url' => 'https://sendgrid.com/api/newsletter/lists/email/add.json',
-            'method' => 'POST',
-            'args' => {
-                        'headers' => {
-                                       'content-type' => 'application/x-www-form-urlencoded'
-                                     },
-                        'content' => 'api_key=sendgrid_api_key&api_user=sendgrid_api_user&data=%7B%22name%22%3A%22Some+One%22%2C%22email%22%3A%22someone%40example.com%22%7D&list=New+Test+List'
-                      },
-            'response' => {
-                            'reason' => 'OK',
-                            'url' => 'https://sendgrid.com/api/newsletter/lists/email/add.json',
-                            'content' => '{"inserted": 1}',
-                            'success' => 1,
-                            'headers' => {
-                                           'server' => 'cloudflare-nginx',
-                                           'date' => 'Fri, 28 Aug 2015 01:19:29 GMT',
-                                           'set-cookie' => '__cfduid=d1a232a5c13ca1f4a60d2f76c06d0618e1440724769; expires=Sat, 27-Aug-16 01:19:29 GMT; path=/; domain=.sendgrid.com; HttpOnly',
-                                           'cf-ray' => '21cc302edd4e2b21-WAW',
-                                           'transfer-encoding' => 'chunked',
-                                           'connection' => 'keep-alive',
-                                           'content-type' => 'text/html'
-                                         },
-                            'protocol' => 'HTTP/1.1',
-                            'status' => '200'
-                          }
-          },
-          {
-            'url' => 'https://sendgrid.com/api/newsletter/lists/delete.json',
-            'method' => 'POST',
-            'args' => {
-                        'content' => 'api_key=sendgrid_api_key&api_user=sendgrid_api_user&list=New+Test+List',
                         'headers' => {
                                        'content-type' => 'application/x-www-form-urlencoded'
                                      }
                       },
+            'method' => 'POST',
             'response' => {
                             'success' => 1,
+                            'url' => 'https://sendgrid.com/api/newsletter/lists/edit.json',
+                            'content' => '{"message": "success"}',
                             'protocol' => 'HTTP/1.1',
+                            'headers' => {
+                                           'transfer-encoding' => 'chunked',
+                                           'cf-ray' => '21d22224712b2af1-WAW',
+                                           'server' => 'cloudflare-nginx',
+                                           'set-cookie' => '__cfduid=d4c8b42a54244e86e868b6a52fa57bcf81440787108; expires=Sat, 27-Aug-16 18:38:28 GMT; path=/; domain=.sendgrid.com; HttpOnly',
+                                           'date' => 'Fri, 28 Aug 2015 18:38:28 GMT',
+                                           'content-type' => 'text/html',
+                                           'connection' => 'keep-alive'
+                                         },
+                            'reason' => 'OK',
+                            'status' => '200'
+                          }
+          },
+          {
+            'response' => {
+                            'content' => '[{"list": "New Test List", "id": 43450780},{"list": "subscribers", "id": 38060302},{"list": "Test Category List", "id": 38116483}]',
+                            'protocol' => 'HTTP/1.1',
+                            'url' => 'https://sendgrid.com/api/newsletter/lists/get.json',
+                            'success' => 1,
                             'status' => '200',
                             'headers' => {
                                            'server' => 'cloudflare-nginx',
-                                           'content-type' => 'text/html',
-                                           'cf-ray' => '21cc30304d4f2b21-WAW',
-                                           'connection' => 'keep-alive',
+                                           'cf-ray' => '21d22225e12c2af1-WAW',
                                            'transfer-encoding' => 'chunked',
-                                           'set-cookie' => '__cfduid=d1a232a5c13ca1f4a60d2f76c06d0618e1440724769; expires=Sat, 27-Aug-16 01:19:29 GMT; path=/; domain=.sendgrid.com; HttpOnly',
-                                           'date' => 'Fri, 28 Aug 2015 01:19:29 GMT'
+                                           'connection' => 'keep-alive',
+                                           'content-type' => 'text/html',
+                                           'set-cookie' => '__cfduid=d4c8b42a54244e86e868b6a52fa57bcf81440787108; expires=Sat, 27-Aug-16 18:38:28 GMT; path=/; domain=.sendgrid.com; HttpOnly',
+                                           'date' => 'Fri, 28 Aug 2015 18:38:28 GMT'
                                          },
-                            'url' => 'https://sendgrid.com/api/newsletter/lists/delete.json',
-                            'content' => '{"message": "success"}',
                             'reason' => 'OK'
+                          },
+            'method' => 'POST',
+            'args' => {
+                        'headers' => {
+                                       'content-type' => 'application/x-www-form-urlencoded'
+                                     },
+                        'content' => {
+                                       'api_user' => 'sendgrid_api_user',
+                                       'api_key' => 'sendgrid_api_key'
+                                     }
+                      },
+            'url' => 'https://sendgrid.com/api/newsletter/lists/get.json'
+          },
+          {
+            'response' => {
+                            'status' => '200',
+                            'reason' => 'OK',
+                            'headers' => {
+                                           'server' => 'cloudflare-nginx',
+                                           'cf-ray' => '21d22227412f2af1-WAW',
+                                           'transfer-encoding' => 'chunked',
+                                           'connection' => 'keep-alive',
+                                           'content-type' => 'text/html',
+                                           'set-cookie' => '__cfduid=d8c7b31ebacd55c3636822e86f665cb591440787109; expires=Sat, 27-Aug-16 18:38:29 GMT; path=/; domain=.sendgrid.com; HttpOnly',
+                                           'date' => 'Fri, 28 Aug 2015 18:38:29 GMT'
+                                         },
+                            'protocol' => 'HTTP/1.1',
+                            'content' => '[{"list": "New Test List", "id": 43450780}]',
+                            'url' => 'https://sendgrid.com/api/newsletter/lists/get.json',
+                            'success' => 1
+                          },
+            'method' => 'POST',
+            'args' => {
+                        'headers' => {
+                                       'content-type' => 'application/x-www-form-urlencoded'
+                                     },
+                        'content' => {
+                                       'api_key' => 'sendgrid_api_key',
+                                       'list' => 'New+Test+List',
+                                       'api_user' => 'sendgrid_api_user'
+                                     }
+                      },
+            'url' => 'https://sendgrid.com/api/newsletter/lists/get.json'
+          },
+          {
+            'response' => {
+                            'url' => 'https://sendgrid.com/api/newsletter/lists/email/add.json',
+                            'success' => 1,
+                            'content' => '{"inserted": 1}',
+                            'protocol' => 'HTTP/1.1',
+                            'headers' => {
+                                           'content-type' => 'text/html',
+                                           'connection' => 'keep-alive',
+                                           'set-cookie' => '__cfduid=d8c7b31ebacd55c3636822e86f665cb591440787109; expires=Sat, 27-Aug-16 18:38:29 GMT; path=/; domain=.sendgrid.com; HttpOnly',
+                                           'date' => 'Fri, 28 Aug 2015 18:38:29 GMT',
+                                           'server' => 'cloudflare-nginx',
+                                           'transfer-encoding' => 'chunked',
+                                           'cf-ray' => '21d22228b1312af1-WAW'
+                                         },
+                            'reason' => 'OK',
+                            'status' => '200'
+                          },
+            'method' => 'POST',
+            'args' => {
+                        'headers' => {
+                                       'content-type' => 'application/x-www-form-urlencoded'
+                                     },
+                        'content' => {
+                                       'api_user' => 'sendgrid_api_user',
+                                       'list' => 'New+Test+List',
+                                       'data' => '{"email":"someone@example.com","name":"Some+One"}',
+                                       'api_key' => 'sendgrid_api_key'
+                                     }
+                      },
+            'url' => 'https://sendgrid.com/api/newsletter/lists/email/add.json'
+          },
+          {
+            'url' => 'https://sendgrid.com/api/newsletter/lists/delete.json',
+            'args' => {
+                        'content' => {
+                                       'list' => 'New+Test+List',
+                                       'api_user' => 'sendgrid_api_user',
+                                       'api_key' => 'sendgrid_api_key'
+                                     },
+                        'headers' => {
+                                       'content-type' => 'application/x-www-form-urlencoded'
+                                     }
+                      },
+            'method' => 'POST',
+            'response' => {
+                            'status' => '200',
+                            'reason' => 'OK',
+                            'headers' => {
+                                           'server' => 'cloudflare-nginx',
+                                           'transfer-encoding' => 'chunked',
+                                           'cf-ray' => '21d2222b71352af1-WAW',
+                                           'content-type' => 'text/html',
+                                           'connection' => 'keep-alive',
+                                           'set-cookie' => '__cfduid=d8c7b31ebacd55c3636822e86f665cb591440787109; expires=Sat, 27-Aug-16 18:38:29 GMT; path=/; domain=.sendgrid.com; HttpOnly',
+                                           'date' => 'Fri, 28 Aug 2015 18:38:29 GMT'
+                                         },
+                            'protocol' => 'HTTP/1.1',
+                            'content' => '{"message": "success"}',
+                            'success' => 1,
+                            'url' => 'https://sendgrid.com/api/newsletter/lists/delete.json'
                           }
           }
         ];
