@@ -25,8 +25,9 @@ sub startup : Test(startup => no_plan) {
     $self->SUPER::startup();
 
     $sgn = WebService::SendGrid::Newsletter->new(
-        api_user => $self->sendgrid_api_user,
-        api_key  => $self->sendgrid_api_key,
+        api_user     => $self->sendgrid_api_user,
+        api_key      => $self->sendgrid_api_key,
+        json_options => { canonical => 1 },
     );
 }
 
