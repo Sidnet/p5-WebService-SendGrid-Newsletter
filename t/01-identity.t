@@ -22,13 +22,12 @@ my $new_name = 'The New Commpany Name';
 sub startup : Test(startup => no_plan) {
     my ($self) = @_;
 
-    $self->SKIP_ALL('SENDGRID_API_USER and SENDGRID_API_KEY are ' .
-        'required to run live tests')
-        unless $ENV{SENDGRID_API_USER} && $ENV{SENDGRID_API_KEY};
+    $self->SUPER::startup();
 
     $sgn = WebService::SendGrid::Newsletter->new(
-        api_user => $ENV{SENDGRID_API_USER},
-        api_key  => $ENV{SENDGRID_API_KEY},
+        api_user     => $self->sendgrid_api_user,
+        api_key      => $self->sendgrid_api_key,
+        json_options => { canonical => 1 },
     );
 }
 
