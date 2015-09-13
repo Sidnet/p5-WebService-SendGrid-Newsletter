@@ -8,12 +8,12 @@ use warnings;
 use Test::More;
 use parent 'Test::Class';
 
-use HTTPTinyMock;
+use Test::Mock::HTTP::Tiny;
 
 sub startup : Test(startup => no_plan) {
     my ($self) = @_;
 
-    HTTPTinyMock->clear_mocked_data;
+    Test::Mock::HTTP::Tiny->clear_mocked_data;
 
     if ($ENV{CAPTURE_DATA}) {
         $self->SKIP_ALL('SENDGRID_API_USER and SENDGRID_API_KEY are ' .
@@ -22,7 +22,7 @@ sub startup : Test(startup => no_plan) {
     }
     else {
         if ($self->can('mocked_data')) {
-            HTTPTinyMock->set_mocked_data($self->mocked_data);
+            Test::Mock::HTTP::Tiny->set_mocked_data($self->mocked_data);
         }
     }
 }
@@ -31,18 +31,15 @@ sub shutdown : Test(shutdown) {
     my ($self) = @_;
 
     if ($ENV{CAPTURE_DATA}) {
-        my $captured_data = HTTPTinyMock->captured_data;
+        my $captured_data = Test::Mock::HTTP::Tiny->captured_data;
 
         for my $request (@$captured_data) {
-            $request->{args}{content} =~
-                s/api_user=[^&]+/api_user=sendgrid_api_user/;
-            $request->{args}{content} =~
-                s/api_key=[^&]+/api_key=sendgrid_api_key/;
+            $request->{args}{content}{api_user} = 'sendgrid_api_user';
+            $request->{args}{content}{api_key}  = 'sendgrid_api_key';
         }
-
     }
     
-    print STDERR HTTPTinyMock->captured_data_dump;
+    print STDERR Test::Mock::HTTP::Tiny->captured_data_dump;
 }
 
 sub sendgrid_api_user {
