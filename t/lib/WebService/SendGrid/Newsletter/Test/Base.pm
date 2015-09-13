@@ -37,9 +37,9 @@ sub shutdown : Test(shutdown) {
             $request->{args}{content}{api_user} = 'sendgrid_api_user';
             $request->{args}{content}{api_key}  = 'sendgrid_api_key';
         }
-    }
-    
-    print STDERR Test::Mock::HTTP::Tiny->captured_data_dump;
+
+        print STDERR Test::Mock::HTTP::Tiny->captured_data_dump;
+    }    
 }
 
 sub sendgrid_api_user {
