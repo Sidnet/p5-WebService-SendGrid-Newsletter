@@ -64,11 +64,13 @@ sub add {
 
     if (ref $args{data} eq 'HASH') {
         # Data is a hashref -- turn it into JSON
-        $args{data} = encode_json $args{data};
+        $args{data} = to_json($args{data}, $self->{sgn}{json_options});
     }
     elsif (ref $args{data} eq 'ARRAY') {
         # Data is an arrayref of hashrefs -- turn each item into JSON
-        $args{data} = [ map { encode_json $_; } @{$args{data}} ];
+        $args{data} = [
+            map { to_json($_, $self->{sgn}{json_options}); } @{$args{data}}
+        ];
     }
     
     return $self->{sgn}->_send_request('lists/email/add', %args);
