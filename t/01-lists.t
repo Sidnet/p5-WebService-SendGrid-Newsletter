@@ -14,7 +14,6 @@ use WebService::SendGrid::Newsletter;
 
 use parent 'WebService::SendGrid::Newsletter::Test::Base';
 
-my $sgn;
 my $list_name       = 'Test List';
 my $new_list_name   = 'New Test List';
 my $name            = 'Test List Name';
@@ -23,12 +22,6 @@ sub startup : Test(startup => no_plan) {
     my ($self) = @_;
 
     $self->SUPER::startup();
-
-    $sgn = WebService::SendGrid::Newsletter->new(
-        api_user     => $self->sendgrid_api_user,
-        api_key      => $self->sendgrid_api_key,
-        json_options => { canonical => 1 },
-    );
 }
 
 sub list : Tests {
@@ -36,57 +29,57 @@ sub list : Tests {
 
     throws_ok
         {
-            $sgn->lists->add->();
+            $self->sgn->lists->add->();
         }
         qr/Required parameter 'list' is not defined/,
         'An exception is thrown when a required parameter is missing';
 
-    $sgn->lists->add(list => $list_name, name => $name);
-    $self->expect_success($sgn, 'Adding a new list');
+    $self->sgn->lists->add(list => $list_name, name => $name);
+    $self->expect_success($self->sgn, 'Adding a new list');
 
-    $sgn->lists->add(list => $list_name, name => $name);
-    $self->expect_success($sgn, 'Adding a duplicate new list');
+    $self->sgn->lists->add(list => $list_name, name => $name);
+    $self->expect_success($self->sgn, 'Adding a duplicate new list');
     is(
-        $sgn->{last_response}->{error}, 
+        $self->sgn->{last_response}->{error},
         "$list_name already exists",
         'An error response message is returned when the list name already exists'
     );
 
-    $sgn->lists->edit(list => $list_name, newlist => $new_list_name);
-    $self->expect_success($sgn, 'Editing list name');
+    $self->sgn->lists->edit(list => $list_name, newlist => $new_list_name);
+    $self->expect_success($self->sgn, 'Editing list name');
     
-    $sgn->lists->get();
-    ok($sgn->{last_response}->[0]->{list}, 'List is found');
-    $self->expect_success($sgn, 'Getting lists');
+    $self->sgn->lists->get();
+    ok($self->sgn->{last_response}->[0]->{list}, 'List is found');
+    $self->expect_success($self->sgn, 'Getting lists');
 
-    $sgn->lists->get(list => $new_list_name);
-    $self->expect_success($sgn, "$list_name already exists");
+    $self->sgn->lists->get(list => $new_list_name);
+    $self->expect_success($self->sgn, "$list_name already exists");
 
     throws_ok
         {
-            $sgn->lists->email->add(list => $new_list_name)
+            $self->sgn->lists->email->add(list => $new_list_name)
         }
         qr/Required parameter 'data' is not defined/, 
         'An exception is thrown when a required parameter is missing';
     
-    $sgn->lists->email->add(
+    $self->sgn->lists->email->add(
         list => $new_list_name,
         data => { 
             name  => 'Some One', 
             email => 'someone@example.com' 
         }
     );
-    $self->expect_success($sgn, 'Adding a new email');
+    $self->expect_success($self->sgn, 'Adding a new email');
 
     throws_ok
         {
-            $sgn->lists->delete->();
+            $self->sgn->lists->delete->();
         }
         qr/Required parameter 'list' is not defined/, 
         'An exception is thrown when a required parameter is missing';
 
-    $sgn->lists->delete(list => $new_list_name);
-    $self->expect_success($sgn, 'Deleting a list');
+    $self->sgn->lists->delete(list => $new_list_name);
+    $self->expect_success($self->sgn, 'Deleting a list');
 }
 
 Test::Class->runtests;

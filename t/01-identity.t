@@ -14,7 +14,6 @@ use WebService::SendGrid::Newsletter;
 
 use parent 'WebService::SendGrid::Newsletter::Test::Base';
 
-my $sgn;
 my $identity = 'Testing Address';
 my $email    = 'someone@example.com';
 my $new_name = 'The New Commpany Name';
@@ -23,12 +22,6 @@ sub startup : Test(startup => no_plan) {
     my ($self) = @_;
 
     $self->SUPER::startup();
-
-    $sgn = WebService::SendGrid::Newsletter->new(
-        api_user     => $self->sendgrid_api_user,
-        api_key      => $self->sendgrid_api_key,
-        json_options => { canonical => 1 },
-    );
 }
 
 sub identity : Tests {
@@ -36,13 +29,13 @@ sub identity : Tests {
 
     throws_ok 
         {
-            $sgn->identity->add(name => 'name') 
+            $self->sgn->identity->add(name => 'name')
         }
         qr/Required parameter 'identity' is not defined/, 
         'An exception is thrown when a required parameter is missing';
 
 
-    $sgn->identity->add(
+    $self->sgn->identity->add(
         identity => $identity,
         name     => 'A commpany name',
         email    => 'commpany@example.com',
@@ -53,47 +46,47 @@ sub identity : Tests {
         country  => 'Germany',
         replyto  => 'replythis@example.com',
     );
-    $self->expect_success($sgn, 'Creating a new sender address');
+    $self->expect_success($self->sgn, 'Creating a new sender address');
 
-    $sgn->identity->edit(
+    $self->sgn->identity->edit(
         identity    => $identity,
         name        => $new_name,
         email       => $email,
     );
-    $self->expect_success($sgn, 'Editing a sender address');
+    $self->expect_success($self->sgn, 'Editing a sender address');
 
     throws_ok 
         {
-            $sgn->identity->get() 
+            $self->sgn->identity->get()
         }
         qr/Required parameter 'identity' is not defined/, 
         'An exception is thrown when a required parameter is missing';
 
-    $sgn->identity->get(identity => $identity);
+    $self->sgn->identity->get(identity => $identity);
     is(
-        $sgn->{last_response}->{name}, 
+        $self->sgn->{last_response}->{name},
         $new_name, 
         'An expected name of sender is found'
     );
-    $self->expect_success($sgn, 'Getting sender address');
+    $self->expect_success($self->sgn, 'Getting sender address');
 
-    $sgn->identity->list(identity => $identity);
-    is($sgn->{last_response}->[0]->{identity}, $identity, "$identity exists on the account");
-    $self->expect_success($sgn, 'Checking if specific sender address exists');
+    $self->sgn->identity->list(identity => $identity);
+    is($self->sgn->{last_response}->[0]->{identity}, $identity, "$identity exists on the account");
+    $self->expect_success($self->sgn, 'Checking if specific sender address exists');
 
-    $sgn->identity->list();
-    ok($sgn->{last_response}->[0]->{identity}, 'Get list of sender address');
-    $self->expect_success($sgn, 'Listing sender addresses');
+    $self->sgn->identity->list();
+    ok($self->sgn->{last_response}->[0]->{identity}, 'Get list of sender address');
+    $self->expect_success($self->sgn, 'Listing sender addresses');
 
     throws_ok
         {
-            $sgn->identity->delete() 
+            $self->sgn->identity->delete()
         }
         qr/Required parameter 'identity' is not defined/, 
         'An exception is thrown when a required parameter is missing';
 
-    $sgn->identity->delete(identity => $identity);
-    $self->expect_success($sgn, 'Deleting sender address');
+    $self->sgn->identity->delete(identity => $identity);
+    $self->expect_success($self->sgn, 'Deleting sender address');
 }
 
 Test::Class->runtests;

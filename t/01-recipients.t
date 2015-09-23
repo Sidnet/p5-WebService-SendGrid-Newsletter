@@ -14,7 +14,6 @@ use WebService::SendGrid::Newsletter;
 
 use parent 'WebService::SendGrid::Newsletter::Test::Base';
 
-my $sgn;
 my $list_name       = 'Test List';
 my $newsletter_name = 'Test Newsletter';
 
@@ -25,13 +24,8 @@ sub startup : Test(startup => no_plan) {
         'required to run live tests')
         unless $ENV{SENDGRID_API_USER} && $ENV{SENDGRID_API_KEY};
 
-    $sgn = WebService::SendGrid::Newsletter->new(
-        api_user => $ENV{SENDGRID_API_USER},
-        api_key  => $ENV{SENDGRID_API_KEY},
-    );
-
     # Requires an existing newsletter in order to assign recipient to
-    $sgn->add(
+    $self->sgn->add(
         identity => 'This is my test marketing email',
         name     => $newsletter_name,
         subject  => 'Your weekly newsletter',
@@ -48,33 +42,33 @@ sub lists : Tests {
 
     throws_ok
         {
-            $sgn->recipients->add->();
+            $self->sgn->recipients->add->();
         }
         qr/Required parameter 'name' is not defined/,
         'An exception is thrown when a required parameter is missing';
 
-    $sgn->recipients->add(list => $list_name, name => $newsletter_name);
-    $self->expect_success($sgn, 'Adding a new list');
+    $self->sgn->recipients->add(list => $list_name, name => $newsletter_name);
+    $self->expect_success($self->sgn, 'Adding a new list');
 
     throws_ok
         {
-            $sgn->recipients->get->();
+            $self->sgn->recipients->get->();
         }
         qr/Required parameter 'name' is not defined/,
         'An exception is thrown when a required parameter is missing';
 
-    $sgn->recipients->get(name => $newsletter_name);
-    $self->expect_success($sgn, "Getting recipients of specific newsletter");
+    $self->sgn->recipients->get(name => $newsletter_name);
+    $self->expect_success($self->sgn, "Getting recipients of specific newsletter");
 
     throws_ok
         {
-            $sgn->recipients->delete->();
+            $self->sgn->recipients->delete->();
         }
         qr/Required parameter 'name' is not defined/, 
         'An exception is thrown when a required parameter is missing';
 
-    $sgn->recipients->delete(list => $list_name, name => $newsletter_name);
-    $self->expect_success($sgn, 'Deleting a list');
+    $self->sgn->recipients->delete(list => $list_name, name => $newsletter_name);
+    $self->expect_success($self->sgn, 'Deleting a list');
 }
 
 Test::Class->runtests;

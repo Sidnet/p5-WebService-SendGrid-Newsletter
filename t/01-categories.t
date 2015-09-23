@@ -15,7 +15,6 @@ use WebService::SendGrid::Newsletter;
 
 use parent 'WebService::SendGrid::Newsletter::Test::Base';
 
-my $sgn;
 my $category_name;
 my $newsletter_name = 'Test Newsletter';
 
@@ -26,13 +25,8 @@ sub startup : Test(startup => no_plan) {
         'required to run live tests')
         unless $ENV{SENDGRID_API_USER} && $ENV{SENDGRID_API_KEY};
 
-    $sgn = WebService::SendGrid::Newsletter->new(
-        api_user => $ENV{SENDGRID_API_USER},
-        api_key  => $ENV{SENDGRID_API_KEY},
-    );
-
     # Requires an existing newsletter in order to assign recipient to
-    $sgn->add(
+    $self->sgn->add(
         identity => 'This is my test marketing email',
         name     => $newsletter_name,
         subject  => 'Your weekly newsletter',
@@ -48,7 +42,7 @@ sub startup : Test(startup => no_plan) {
 sub shutdown : Test(shutdown) {
     my ($self) = @_;
 
-    $sgn->delete(name => $newsletter_name);
+    $self->sgn->delete(name => $newsletter_name);
 }
 
 sub categories : Tests {
@@ -56,36 +50,36 @@ sub categories : Tests {
 
     throws_ok 
         { 
-            $sgn->categories->create() 
+            $self->sgn->categories->create() 
         } 
         qr/Required parameter 'category' is not defined/, 
         'An exception is thrown when a required parameter is missing';
 
-    $sgn->categories->create(category => $category_name);
-    $self->expect_success($sgn, 'Creating a new category');
+    $self->sgn->categories->create(category => $category_name);
+    $self->expect_success($self->sgn, 'Creating a new category');
   
     throws_ok 
         { 
-            $sgn->categories->add(category => $category_name); 
+            $self->sgn->categories->add(category => $category_name);
         } 
         qr/Required parameter 'name' is not defined/, 
         'An exception is thrown when a required parameter is missing';
 
-    $sgn->categories->add(category => $category_name, name => $newsletter_name);
-    $self->expect_success($sgn, 'Assigning category to a newletter');
+    $self->sgn->categories->add(category => $category_name, name => $newsletter_name);
+    $self->expect_success($self->sgn, 'Assigning category to a newletter');
 
-    $sgn->categories->list();
-    $self->expect_success($sgn, 'Listing category');
+    $self->sgn->categories->list();
+    $self->expect_success($self->sgn, 'Listing category');
 
     throws_ok
         {
-            $sgn->categories->remove->();
+            $self->sgn->categories->remove->();
         }
         qr/Required parameter 'name' is not defined/, 
         'An exception is thrown when a required parameter is missing';
 
-    $sgn->categories->remove(category => $category_name, name => $newsletter_name);
-    $self->expect_success($sgn, 'Removing a category');
+    $self->sgn->categories->remove(category => $category_name, name => $newsletter_name);
+    $self->expect_success($self->sgn, 'Removing a category');
 
 }
 

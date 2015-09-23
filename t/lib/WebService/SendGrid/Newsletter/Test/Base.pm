@@ -42,6 +42,19 @@ sub shutdown : Test(shutdown) {
     }    
 }
 
+my $sgn;
+
+sub sgn {
+    my ($self) = @_;
+
+    $sgn ||= WebService::SendGrid::Newsletter->new(
+        api_user => $self->sendgrid_api_user,
+        api_key  => $self->sendgrid_api_key,
+        json_options => { canonical => 1 },
+    );
+    return $sgn;
+}
+
 sub sendgrid_api_user {
     my ($self) = @_;
 
