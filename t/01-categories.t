@@ -22,13 +22,11 @@ my $newsletter_name = 'Test Newsletter';
 sub startup : Test(startup => no_plan) {
     my ($self) = @_;
 
-    $self->SKIP_ALL('SENDGRID_API_USER and SENDGRID_API_KEY are ' .
-        'required to run live tests')
-        unless $ENV{SENDGRID_API_USER} && $ENV{SENDGRID_API_KEY};
+    $self->SUPER::startup();
 
     $sgn = WebService::SendGrid::Newsletter->new(
-        api_user => $ENV{SENDGRID_API_USER},
-        api_key  => $ENV{SENDGRID_API_KEY},
+        api_user => $self->sendgrid_api_user,
+        api_key  => $self->sendgrid_api_key,
     );
 
     # Requires an existing newsletter in order to assign recipient to
@@ -40,15 +38,28 @@ sub startup : Test(startup => no_plan) {
         html     => '<h1>Hello</h1><p>This is your weekly newsletter</p>'
     );
 
-    sleep(60);
+    if ($ENV{CAPTURE_DATA}) {
+        # Sleep for a minute to allow the changes to become effective
+        sleep(60);
 
-    $category_name = random_regex('[A-Z]{5}[a-z]{5}');
+        # Generate a new random category name
+        $category_name = random_regex('[A-Z]{5}[a-z]{5}')
+    }
+    else {
+        $category_name = 'AWCCSbuzcs';
+    }
 }
 
 sub shutdown : Test(shutdown) {
     my ($self) = @_;
 
     $sgn->delete(name => $newsletter_name);
+
+    $self->SUPER::shutdown();
+
+    if ($ENV{CAPTURE_DATA}) {
+        print STDERR "Category name: $category_name\n";
+    }
 }
 
 sub categories : Tests {
