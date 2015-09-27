@@ -96,7 +96,7 @@ sub _send_request {
 
     my $params = { api_user => $self->{api_user}, api_key => $self->{api_key}, %args };
 
-    my $url = 'https://sendgrid.com/api/newsletter/' . $path . '.json';
+    my $url = 'https://api.sendgrid.com/api/newsletter/' . $path . '.json';
 
     my $response = $self->{ua}->post_form($url, $params);
 
