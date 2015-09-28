@@ -21,9 +21,7 @@ my $newsletter_name = 'Test Newsletter';
 sub startup : Test(startup => no_plan) {
     my ($self) = @_;
 
-    $self->SKIP_ALL('SENDGRID_API_USER and SENDGRID_API_KEY are ' .
-        'required to run live tests')
-        unless $ENV{SENDGRID_API_USER} && $ENV{SENDGRID_API_KEY};
+    $self->SUPER::startup();
 
     # Create a new recipients list
     $self->sgn->lists->add(list => $list_name, name => 'name');
@@ -51,6 +49,8 @@ sub startup : Test(startup => no_plan) {
 sub shutdown : Test(shutdown) {
     my ($self) = @_;
 
+    $self->SUPER::shutdown();
+
     $self->sgn->lists->delete(list => $list_name);
     $self->sgn->delete(name => $newsletter_name);
 }
@@ -65,7 +65,21 @@ sub schedule : Tests {
         qr/Required parameter 'name' is not defined/,
         'An exception is thrown when a required parameter is missing';
 
-    my $dt = DateTime->now();
+    my $dt;
+
+    if ($ENV{CAPTURE_DATA}) {
+        $dt = DateTime->now();
+    } else {
+        $dt = DateTime->new(
+            year   => 2015,
+            month  => 9,
+            day    => 23,
+            hour   => 15,
+            minute => 56,
+            second => 01,
+        );
+    }
+
     $dt->add(minutes => 2);
 
     $self->sgn->schedule->add(name => $newsletter_name, at => "$dt");
