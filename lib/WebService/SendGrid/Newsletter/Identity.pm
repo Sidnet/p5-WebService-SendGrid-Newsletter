@@ -143,6 +143,8 @@ sub edit {
 
 Retrieves information associated with a particular address.
 
+=over 4
+
 =item * identity
 
 B<(Required)> The identity of a particular address to retrieve information.
@@ -163,6 +165,8 @@ sub get {
 
 Retrives all address on the account, or check if a specified address exists.
 
+=over 4
+
 =item * identity
 
 The identity of an existing address to check.
@@ -180,6 +184,8 @@ sub list {
 =method delete
 
 Removes an exsiting address from the account.
+
+=over 4
 
 =item * identity
 
