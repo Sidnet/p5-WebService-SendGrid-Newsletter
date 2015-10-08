@@ -15,6 +15,7 @@ use WebService::SendGrid::Newsletter;
 
 use parent 'WebService::SendGrid::Newsletter::Test::Base';
 
+my $start_dt;
 my $list_name       = 'subscribers_test';
 my $newsletter_name = 'Test Newsletter';
 
@@ -40,8 +41,10 @@ sub startup : Test(startup => no_plan) {
     );
     $self->sgn->add(%newsletter);
 
-    # Give SendGrid some time for the changes to become effective
-    sleep(60);
+    if ($ENV{CAPTURE_DATA}) {
+        # Give SendGrid some time for the changes to become effective
+        sleep(60);
+    }
 
     $self->sgn->recipients->add(name => $newsletter_name, list => $list_name);
 }
@@ -53,6 +56,10 @@ sub shutdown : Test(shutdown) {
 
     $self->sgn->lists->delete(list => $list_name);
     $self->sgn->delete(name => $newsletter_name);
+
+    if ($ENV{CAPTURE_DATA}) {
+        print STDERR "Datetime: $start_dt\n";
+    }
 }
 
 sub schedule : Tests {
@@ -68,7 +75,8 @@ sub schedule : Tests {
     my $dt;
 
     if ($ENV{CAPTURE_DATA}) {
-        $dt = DateTime->now();
+        $start_dt = DateTime->now();
+        $dt = $start_dt;
     } else {
         $dt = DateTime->new(
             year   => 2015,
