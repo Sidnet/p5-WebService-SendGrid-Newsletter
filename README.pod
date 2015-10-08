@@ -8,7 +8,7 @@ WebService::SendGrid::Newsletter - Perl interface to SendGrid Newsletter API
 
 =head1 VERSION
 
-version 0.001
+version 0.01
 
 =head1 SYNOPSIS
 
