@@ -19,7 +19,8 @@ dies_ok {
 lives_ok {
     $sgn = WebService::SendGrid::Newsletter->new(
         api_user => 'username',
-        api_key  => 'password'
+        api_key  => 'password',
+        json_options => { canonical => 1 },
     );
 } 'Can successfully create a new instance';
 
