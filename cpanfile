@@ -1,18 +1,25 @@
 requires "Carp" => "0";
 requires "HTTP::Request::Common" => "0";
+requires "HTTP::Tiny" => "0";
 requires "JSON" => "0";
-requires "LWP::UserAgent" => "0";
+requires "parent" => "0";
 requires "perl" => "5.006";
 requires "strict" => "0";
 requires "warnings" => "0";
 
 on 'test' => sub {
+  requires "DateTime" => "0";
   requires "ExtUtils::MakeMaker" => "0";
   requires "File::Spec" => "0";
   requires "File::Temp" => "0";
   requires "IO::Handle" => "0";
   requires "IPC::Open3" => "0";
+  requires "String::Random" => "0";
+  requires "Test::Class" => "0";
+  requires "Test::Exception" => "0";
+  requires "Test::Mock::HTTP::Tiny" => "0";
   requires "Test::More" => "0";
+  requires "lib" => "0";
   requires "perl" => "5.006";
 };
 

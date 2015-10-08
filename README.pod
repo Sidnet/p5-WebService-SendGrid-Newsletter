@@ -53,6 +53,8 @@ Parameters:
 
 =item * api_key
 
+=item * json_options
+
 =back
 
 =head2 get
@@ -179,6 +181,16 @@ allows to assign recipient lists to newsletters.
 Returns an instance of L<WebService::SendGrid::Newsletter::Schedule>, which is
 used to schedule a delivery time for a newsletter.
 
+=head2 identity
+
+Returns an instance of L<WebService::SendGrid::Newsletter::Identity>, which is
+used to manipulate address of sender.
+
+=head2 categories
+
+Returns an instance of L<WebService::SendGrid::Newsletter::Categories>, which
+creates and manages categories within newsletters
+
 =head2 last_response_code
 
 Returns the code of the last response from the API.
@@ -194,7 +206,7 @@ Returns the data structure retrieved with the last response from the API.
 =head2 Bugs / Feature Requests
 
 Please report any bugs or feature requests through the issue tracker
-at L<https://github.com/oiami/WebService-SendGrid-Newsletter/issues>.
+at L<https://github.com/Sidnet/p5-WebService-SendGrid-Newsletter/issues>.
 You will be notified automatically of any progress on your issue.
 
 =head2 Source Code
@@ -202,9 +214,9 @@ You will be notified automatically of any progress on your issue.
 This is open source software.  The code repository is available for
 public review and contribution under the terms of the license.
 
-L<https://github.com/oiami/WebService-SendGrid-Newsletter>
+L<https://github.com/Sidnet/p5-WebService-SendGrid-Newsletter>
 
-  git clone https://github.com/oiami/WebService-SendGrid-Newsletter.git
+  git clone https://github.com/Sidnet/p5-WebService-SendGrid-Newsletter.git
 
 =head1 AUTHOR
 
@@ -212,13 +224,25 @@ Michal Wojciechowski <odyniec@cpan.org>
 
 =head1 CONTRIBUTORS
 
-=for stopwords Michal Wojciechowski oiami
+=for stopwords Michal Wojciechowski Michał Pattawan Kaewduangdee oiami
 
 =over 4
 
 =item *
 
 Michal Wojciechowski <odyniec@odyniec.net>
+
+=item *
+
+Michał Wojciechowski <odyniec@odyniec.eu.org>
+
+=item *
+
+Pattawan Kaewduangdee <pattawan.kaewduangdee@sidnet.info>
+
+=item *
+
+Pattawan Kaewduangdee <pattawanna@gmail.com>
 
 =item *
 
