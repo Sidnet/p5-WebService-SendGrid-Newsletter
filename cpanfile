@@ -1,6 +1,6 @@
 requires "Carp" => "0";
 requires "HTTP::Request::Common" => "0";
-requires "HTTP::Tiny" => "0";
+requires "HTTP::Tiny" => "0.056";
 requires "JSON" => "0";
 requires "parent" => "0";
 requires "perl" => "5.006";
