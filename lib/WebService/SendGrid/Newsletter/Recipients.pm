@@ -95,11 +95,11 @@ Parameters:
 
 =item * C<name>
 
-B<(Required)> The name of the newsletter from which to unassign the list.
+B<(Required)> The name of the newsletter from which to remove the list.
 
 =item * C<list>
 
-B<(Required)> The name of the list to be unassigned.
+B<(Required)> The name of the list to be removed.
 
 =back
 
