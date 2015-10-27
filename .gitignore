@@ -1,4 +1,5 @@
 .build
-WebService-Sendgrid-Newsletter*
-pod2htm*.tmp
 .mailmap
+WebService-SendGrid-Newsletter-*
+pod2htm*.tmp
+
