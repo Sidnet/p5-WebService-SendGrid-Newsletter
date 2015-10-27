@@ -43,16 +43,16 @@ Parameters:
 
 =item * C<name>
 
-B<(Required)> Existing newsletter to schedule delivery for.
+B<(Required)> The name of the newsletter to schedule delivery for.
 
 =item * C<at>
 
-Date/Time to schedule newsletter must be provided
-in format (YYYY-MM-DDTHH:MM:SS+-HH:MM).
+Date/time of the scheduled delivery (must be provided in the
+C<YYYY-MM-DDTHH:MM:SS+-HH:MM> format).
 
 =item * C<after>
 
-Positive number of minutes until devivery should occur.
+The number of minutes until delivery time (must be positive).
 
 =back
 
@@ -76,8 +76,8 @@ Parameters:
 
 =item * C<name>
 
-B<(Required)> Specific existing newsletter to be retrieved
-the delivery time schedule.
+B<(Required)> The name of the newsletter for which to retrieve the scheduled
+delivery time.
 
 =back
 
@@ -93,7 +93,7 @@ sub get {
 
 =method delete
 
-Removes a schedule send for a newsletter
+Removes a scheduled send for a newsletter.
 
 Parameters:
 
@@ -101,7 +101,8 @@ Parameters:
 
 =item * C<name>
 
-B<(Required)> Existing newsletter to be removed schedule delivery time
+B<(Required)> The name of the newsletter for which to remove the scheduled
+delivery time.
 
 =back
 
