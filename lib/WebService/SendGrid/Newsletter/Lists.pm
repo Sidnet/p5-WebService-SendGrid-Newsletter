@@ -15,7 +15,7 @@ Parameters:
 
 =over 4
 
-=item * sgn
+=item * C<sgn>
 
 An instance of WebService::SendGrid::Newsletter.
 
@@ -42,11 +42,11 @@ Parameters:
 
 =over 4
 
-=item * list
+=item * C<list>
 
 B<(Required)> The name of the new recipient list.
 
-=item * name
+=item * C<name>
 
 The name of the column for the name associated with email address.
 
@@ -70,7 +70,7 @@ Parameters:
 
 =over 4
 
-=item * list
+=item * C<list>
 
 The name of the list to retrieve.
 
@@ -92,11 +92,11 @@ Parameters:
 
 =over 4
 
-=item * list
+=item * C<list>
 
 B<(Required)> The existing name of the list.
 
-=item * newlist
+=item * C<newlist>
 
 B<(Required)> The new name for the list.
 
@@ -120,7 +120,7 @@ Parameters:
 
 =over 4
 
-=item * list
+=item * C<list>
 
 B<(Required)> The name of the list to be deleted.
 

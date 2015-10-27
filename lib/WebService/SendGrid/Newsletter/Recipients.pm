@@ -14,7 +14,7 @@ Parameters:
 
 =over 4
 
-=item * sgn
+=item * C<sgn>
 
 An instance of WebService::SendGrid::Newsletter.
 
@@ -41,11 +41,11 @@ Parameters:
 
 =over 4
 
-=item * name
+=item * C<name>
 
 B<(Required)> The name of newsletter.
 
-=item * list
+=item * C<list>
 
 B<(Required)> The name of existing list to assign to newsletter.
 
@@ -69,7 +69,7 @@ Parameters:
 
 =over 4
 
-=item * name
+=item * C<name>
 
 B<(Required)> The name of newsletter to retrieve lists.
 
@@ -93,11 +93,11 @@ Parameters:
 
 =over 4
 
-=item * name
+=item * C<name>
 
 B<(Required)> The name of existing newsletter to be unassinged.
 
-=item * list
+=item * C<list>
 
 B<(Required)> The name of specific list be removed from newsletter.
 

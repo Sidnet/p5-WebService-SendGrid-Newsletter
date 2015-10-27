@@ -14,7 +14,7 @@ Parameters:
 
 =over 4
 
-=item * sgn
+=item * C<sgn>
 
 An instance of WebService::SendGrid::Identity.
 
@@ -42,39 +42,39 @@ Parameters:
 
 =over 4
 
-=item * identity
+=item * C<identity>
 
 B<(Required)> A name to identify an address.
 
-=item * name
+=item * C<name>
 
 B<(Required)> The name of the sender to be used for this address.
 
-=item * email
+=item * C<email>
 
 B<(Required)> The email address of the sender.
 
-=item * address
+=item * C<address>
 
 B<(Required)> The physical street address to be used for this address.
 
-=item * city
+=item * C<city>
 
 B<(Required)> The city name.
 
-=item * zip
+=item * C<zip>
 
 B<(Required)> The zip code.
 
-=item * state
+=item * C<state>
 
 B<(Required)> The state of the address.
 
-=item * country
+=item * C<country>
 
 B<(Required)> The country name.
 
-=item * replyto
+=item * C<replyto>
 
 A specific email to be used in for replying. If not defined,
 will default to email parameter.
@@ -102,28 +102,28 @@ Parameters:
 
 =over 4
 
-=item * identity
+=item * C<identity>
 
 B<(Required)> The existing identity of the address to be edited.
 
-=item * newidentity
+=item * C<newidentity>
 
 The specific new identity to be used for this address.
 
-=item * name
+=item * C<name>
 
 The new name to be used.
 
-=item * email
+=item * C<email>
 
 <(Required)> The specific email to be used for this address.
 
-=item * replyto
+=item * C<replyto>
 
 A specific email to be used in for replying. If not defined,
 will default to email parameter
 
-=item * address
+=item * C<address>
 
 The new physical address to used for this address.
 
@@ -145,7 +145,7 @@ Retrieves information associated with a particular address.
 
 =over 4
 
-=item * identity
+=item * C<identity>
 
 B<(Required)> The identity of a particular address to retrieve information.
 
@@ -167,7 +167,7 @@ Retrives all address on the account, or check if a specified address exists.
 
 =over 4
 
-=item * identity
+=item * C<identity>
 
 The identity of an existing address to check.
 
@@ -187,7 +187,7 @@ Removes an exsiting address from the account.
 
 =over 4
 
-=item * identity
+=item * C<identity>
 
 B<(Required)> The identity of an existing address to be removed.
 

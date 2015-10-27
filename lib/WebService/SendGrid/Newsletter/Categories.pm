@@ -14,7 +14,7 @@ Parameters:
 
 =over 4
 
-=item * sgn
+=item * C<sgn>
 
 An instance of WebService::SendGrid::Newsletter.
 
@@ -41,7 +41,7 @@ Parameters:
 
 =over 4
 
-=item * category
+=item * C<category>
 
 B<(Required)> The name of new category.
 
@@ -65,11 +65,11 @@ Parameters:
 
 =over 4
 
-=item * category
+=item * C<category>
 
 B<(Required)> The existing category to be added to newsletter.
 
-=item * name
+=item * C<name>
 
 B<(Required)> The existing newsletter to which the categories will be added to.
 
@@ -93,7 +93,7 @@ Parameters:
 
 =over 4
 
-=item * category
+=item * C<category>
 
 B<(Required)> The existing category to check.
 
@@ -115,11 +115,11 @@ Parameters:
 
 =over 4
 
-=item * name
+=item * C<name>
 
 B<(Required)> The existing that will have category(ies) unassigned from it.
 
-=item * category
+=item * C<category>
 
 B<(Required)> The specific category to be unassigned from the news letter.
 If the category is no specified all categories will be removed.

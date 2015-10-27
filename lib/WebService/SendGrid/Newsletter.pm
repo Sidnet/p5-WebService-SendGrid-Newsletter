@@ -53,11 +53,11 @@ Parameters:
 
 =over 4
 
-=item * api_user
+=item * C<api_user>
 
-=item * api_key
+=item * C<api_key>
 
-=item * json_options
+=item * C<json_options>
 
 =back
 
@@ -114,7 +114,7 @@ Parameters:
 
 =over 4
 
-=item * name
+=item * C<name>
 
 B<(Required)> The name of the newsletter to retrieve.
 
@@ -143,25 +143,25 @@ Parameters:
 
 =over 4
 
-=item * identity
+=item * C<identity>
 
 B<(Required)> The identity that will be assigned to this newsletter. Can be
 omitted if it was given as an argument when the
 WebService::SendGrid::Newsletter instance was created.
 
-=item * name
+=item * C<name>
 
 B<(Required)> The name of the newsletter.
 
-=item * subject
+=item * C<subject>
 
 B<(Required)> The subject line of the newsletter.
 
-=item * text
+=item * C<text>
 
 B<(Required)> The text contents of the newsletter.
 
-=item * html
+=item * C<html>
 
 B<(Required)> The HTML contents of the newsletter.
 
@@ -190,27 +190,27 @@ Parameters:
 
 =over 4
 
-=item * identity
+=item * C<identity>
 
 B<(Required)> The identity that will be assigned to this newsletter.
 
-=item * name
+=item * C<name>
 
 B<(Required)> The existing name of the newsletter.
 
-=item * newname
+=item * C<newname>
 
 B<(Required)> The new name of the newsletter.
 
-=item * subject
+=item * C<subject>
 
 B<(Required)> The subject line of the newsletter.
 
-=item * text
+=item * C<text>
 
 B<(Required)> The text contents of the newsletter.
 
-=item * html
+=item * C<html>
 
 B<(Required)> The HTML contents of the newsletter.
 
@@ -235,7 +235,7 @@ Parameters:
 
 =over 4
 
-=item * name
+=item * C<name>
 
 Newsletter name. If provided, the call checks if the specified newsletter
 exists.
@@ -263,7 +263,7 @@ Parameters:
 
 =over 4
 
-=item * name
+=item * C<name>
 
 B<(Required)> The name of the newsletter to delete.
 

@@ -17,7 +17,7 @@ Parameters:
 
 =over 4
 
-=item * sgn
+=item * C<sgn>
 
 An instance of WebService::SendGrid::Newsletter.
 
@@ -44,11 +44,11 @@ Parameters:
 
 =over 4
 
-=item * list
+=item * C<list>
 
 B<(Required)> Existing list to be added email address to.
 
-=item * data
+=item * C<data>
 
 B<(Required)> A reference to an array or a hash that specifies the name,
 email address, and additional fields to add to the specified recipient list.

@@ -14,7 +14,7 @@ Parameters:
 
 =over 4
 
-=item * sgn
+=item * C<sgn>
 
 An instance of WebService::SendGrid::Newsletter.
 
@@ -41,16 +41,16 @@ Parameters:
 
 =over 4
 
-=item * name
+=item * C<name>
 
 B<(Required)> Existing newsletter to schedule delivery for.
 
-=item * at
+=item * C<at>
 
 Date/Time to schedule newsletter must be provided
 in format (YYYY-MM-DDTHH:MM:SS+-HH:MM).
 
-=item * after
+=item * C<after>
 
 Positive number of minutes until devivery should occur.
 
@@ -74,7 +74,7 @@ Parameters:
 
 =over 4
 
-=item * name
+=item * C<name>
 
 B<(Required)> Specific existing newsletter to be retrieved
 the delivery time schedule.
@@ -99,7 +99,7 @@ Parameters:
 
 =over 4
 
-=item * name
+=item * C<name>
 
 B<(Required)> Existing newsletter to be removed schedule delivery time
 
