@@ -35,7 +35,7 @@ sub new {
 
 =method add
 
-Assigns recipients list to the newsletter.
+Assigns a recipients list to a newsletter.
 
 Parameters:
 
@@ -43,11 +43,11 @@ Parameters:
 
 =item * C<name>
 
-B<(Required)> The name of newsletter.
+B<(Required)> The name of the newsletter.
 
 =item * C<list>
 
-B<(Required)> The name of existing list to assign to newsletter.
+B<(Required)> The name of the recipients list.
 
 =back
 
@@ -63,7 +63,7 @@ sub add {
 
 =method get
 
-Retrieves all recipient lists assigned to specified newsletter.
+Retrieves all recipient lists assigned to the specified newsletter.
 
 Parameters:
 
@@ -71,7 +71,7 @@ Parameters:
 
 =item * C<name>
 
-B<(Required)> The name of newsletter to retrieve lists.
+B<(Required)> The name of the newsletter for which to retrieve lists.
 
 =back
 
@@ -87,7 +87,7 @@ sub get {
 
 =method delete
 
-Removes recipients list from the newsletter.
+Removes a recipient list from the specified newsletter.
 
 Parameters:
 
@@ -95,11 +95,11 @@ Parameters:
 
 =item * C<name>
 
-B<(Required)> The name of existing newsletter to be unassinged.
+B<(Required)> The name of the newsletter from which to unassign the list.
 
 =item * C<list>
 
-B<(Required)> The name of specific list be removed from newsletter.
+B<(Required)> The name of the list to be unassigned.
 
 =back
 
