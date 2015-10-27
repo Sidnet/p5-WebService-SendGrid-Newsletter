@@ -8,7 +8,7 @@ WebService::SendGrid::Newsletter - Perl interface to SendGrid Newsletter API
 
 =head1 VERSION
 
-version 0.01
+version 0.02
 
 =head1 SYNOPSIS
 
@@ -49,11 +49,11 @@ Parameters:
 
 =over 4
 
-=item * api_user
+=item * C<api_user>
 
-=item * api_key
+=item * C<api_key>
 
-=item * json_options
+=item * C<json_options>
 
 =back
 
@@ -65,7 +65,7 @@ Parameters:
 
 =over 4
 
-=item * name
+=item * C<name>
 
 B<(Required)> The name of the newsletter to retrieve.
 
@@ -79,25 +79,25 @@ Parameters:
 
 =over 4
 
-=item * identity
+=item * C<identity>
 
 B<(Required)> The identity that will be assigned to this newsletter. Can be
-ommitted if it was given as an argument when the
+omitted if it was given as an argument when the
 WebService::SendGrid::Newsletter instance was created.
 
-=item * name
+=item * C<name>
 
 B<(Required)> The name of the newsletter.
 
-=item * subject
+=item * C<subject>
 
 B<(Required)> The subject line of the newsletter.
 
-=item * text
+=item * C<text>
 
 B<(Required)> The text contents of the newsletter.
 
-=item * html
+=item * C<html>
 
 B<(Required)> The HTML contents of the newsletter.
 
@@ -111,27 +111,27 @@ Parameters:
 
 =over 4
 
-=item * identity
+=item * C<identity>
 
 B<(Required)> The identity that will be assigned to this newsletter.
 
-=item * name
+=item * C<name>
 
 B<(Required)> The existing name of the newsletter.
 
-=item * newname
+=item * C<newname>
 
 B<(Required)> The new name of the newsletter.
 
-=item * subject
+=item * C<subject>
 
 B<(Required)> The subject line of the newsletter.
 
-=item * text
+=item * C<text>
 
 B<(Required)> The text contents of the newsletter.
 
-=item * html
+=item * C<html>
 
 B<(Required)> The HTML contents of the newsletter.
 
@@ -145,7 +145,7 @@ Parameters:
 
 =over 4
 
-=item * name
+=item * C<name>
 
 Newsletter name. If provided, the call checks if the specified newsletter
 exists.
@@ -160,7 +160,7 @@ Parameters:
 
 =over 4
 
-=item * name
+=item * C<name>
 
 B<(Required)> The name of the newsletter to delete.
 
@@ -222,11 +222,33 @@ L<https://github.com/Sidnet/p5-WebService-SendGrid-Newsletter>
 
 Michal Wojciechowski <odyniec@cpan.org>
 
-=head1 CONTRIBUTOR
+=head1 CONTRIBUTORS
 
-=for stopwords Pattawan Kaewduangdee
+=for stopwords Michal Wojciechowski Michał Pattawan Kaewduangdee oiami
 
-Pattawan Kaewduangdee <pattawan@cpan.org>
+=over 4
+
+=item *
+
+Michal Wojciechowski <odyniec@odyniec.net>
+
+=item *
+
+Michał Wojciechowski <odyniec@odyniec.eu.org>
+
+=item *
+
+Pattawan Kaewduangdee <pattawan.kaewduangdee@sidnet.info>
+
+=item *
+
+Pattawan Kaewduangdee <pattawanna@gmail.com>
+
+=item *
+
+oiami <pattawanna@gmail.com>
+
+=back
 
 =head1 COPYRIGHT AND LICENSE
 
