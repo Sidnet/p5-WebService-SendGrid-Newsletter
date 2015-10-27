@@ -46,7 +46,7 @@ Parameters:
 
 =item * C<list>
 
-B<(Required)> Existing list to be added email address to.
+B<(Required)> The name of the list to which to add the email address.
 
 =item * C<data>
 
