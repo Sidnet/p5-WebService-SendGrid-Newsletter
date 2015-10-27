@@ -16,7 +16,7 @@ Parameters:
 
 =item * C<sgn>
 
-An instance of WebService::SendGrid::Identity.
+An instance of WebService::SendGrid::Newsletter.
 
 =back
 
@@ -36,7 +36,7 @@ sub new {
 
 =method add
 
-Creates a new address
+Creates a new identity.
 
 Parameters:
 
@@ -44,11 +44,11 @@ Parameters:
 
 =item * C<identity>
 
-B<(Required)> A name to identify an address.
+B<(Required)> The name of the new identity.
 
 =item * C<name>
 
-B<(Required)> The name of the sender to be used for this address.
+B<(Required)> The name of the sender.
 
 =item * C<email>
 
@@ -56,7 +56,7 @@ B<(Required)> The email address of the sender.
 
 =item * C<address>
 
-B<(Required)> The physical street address to be used for this address.
+B<(Required)> The physical address.
 
 =item * C<city>
 
@@ -68,7 +68,7 @@ B<(Required)> The zip code.
 
 =item * C<state>
 
-B<(Required)> The state of the address.
+B<(Required)> The state.
 
 =item * C<country>
 
@@ -76,8 +76,8 @@ B<(Required)> The country name.
 
 =item * C<replyto>
 
-A specific email to be used in for replying. If not defined,
-will default to email parameter.
+The email address to be used in the Reply-To field. If not defined, will default
+to the C<email> parameter.
 
 =back
 
@@ -96,7 +96,7 @@ sub add {
 
 =method edit
 
-Edits an existing address.
+Edits an existing identity.
 
 Parameters:
 
@@ -104,28 +104,28 @@ Parameters:
 
 =item * C<identity>
 
-B<(Required)> The existing identity of the address to be edited.
+B<(Required)> The identity to be edited.
 
 =item * C<newidentity>
 
-The specific new identity to be used for this address.
+The new name to be used for this identity.
 
 =item * C<name>
 
-The new name to be used.
+The new name of the sender.
 
 =item * C<email>
 
-<(Required)> The specific email to be used for this address.
+<(Required)> The email address of the sender.
 
 =item * C<replyto>
 
-A specific email to be used in for replying. If not defined,
-will default to email parameter
+The email address to be used in the Reply-To field. If not defined, will default
+to the C<email> parameter.
 
 =item * C<address>
 
-The new physical address to used for this address.
+The new physical address.
 
 =back
 
@@ -141,13 +141,13 @@ sub edit {
 
 =method get
 
-Retrieves information associated with a particular address.
+Retrieves information associated with an identity.
 
 =over 4
 
 =item * C<identity>
 
-B<(Required)> The identity of a particular address to retrieve information.
+B<(Required)> The name of the identity to retrieve information for.
 
 =back
 
@@ -163,13 +163,13 @@ sub get {
 
 =method list
 
-Retrives all address on the account, or check if a specified address exists.
+Retrieves all identities on the account, or checks if a specified identity exists.
 
 =over 4
 
 =item * C<identity>
 
-The identity of an existing address to check.
+The name of the identity to check.
 
 =back
 
@@ -183,13 +183,13 @@ sub list {
 
 =method delete
 
-Removes an exsiting address from the account.
+Removes the specified identity.
 
 =over 4
 
 =item * C<identity>
 
-B<(Required)> The identity of an existing address to be removed.
+B<(Required)> The name of the identity to remove.
 
 =back
 
