@@ -146,7 +146,7 @@ Parameters:
 =item * identity
 
 B<(Required)> The identity that will be assigned to this newsletter. Can be
-ommitted if it was given as an argument when the
+omitted if it was given as an argument when the
 WebService::SendGrid::Newsletter instance was created.
 
 =item * name
