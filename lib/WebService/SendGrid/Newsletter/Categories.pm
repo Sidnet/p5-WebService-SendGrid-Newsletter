@@ -43,7 +43,7 @@ Parameters:
 
 =item * C<category>
 
-B<(Required)> The name of new category.
+B<(Required)> The name of the new category.
 
 =back
 
@@ -67,11 +67,11 @@ Parameters:
 
 =item * C<category>
 
-B<(Required)> The existing category to be added to newsletter.
+B<(Required)> The name of the category to be added to the newsletter.
 
 =item * C<name>
 
-B<(Required)> The existing newsletter to which the categories will be added to.
+B<(Required)> The name of the newsletter to add the category to.
 
 =back
 
@@ -87,7 +87,7 @@ sub add {
 
 =method list
 
-Lists all categories or check whether the specific category exists.
+Lists all categories or check if a specific category exists.
 
 Parameters:
 
@@ -95,7 +95,7 @@ Parameters:
 
 =item * C<category>
 
-B<(Required)> The existing category to check.
+The name of the category to check.
 
 =back
 
@@ -117,12 +117,12 @@ Parameters:
 
 =item * C<name>
 
-B<(Required)> The existing that will have category(ies) unassigned from it.
+B<(Required)> The name of the newsletter to remove categories from.
 
 =item * C<category>
 
-B<(Required)> The specific category to be unassigned from the news letter.
-If the category is no specified all categories will be removed.
+The name of the category to be removed. If not specified, all categories will be
+removed.
 
 =back
 
